@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.7'
 # Use React with Rails
 gem 'react-rails'
 
+#Use Rack CORS Middleware
+gem 'rack-cors'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
