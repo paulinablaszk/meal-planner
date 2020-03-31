@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_142937) do
+ActiveRecord::Schema.define(version: 2020_03_31_131038) do
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "jwt_blacklists", force: :cascade do |t|
     t.string "jti"
@@ -18,6 +24,34 @@ ActiveRecord::Schema.define(version: 2020_03_23_142937) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["jti"], name: "index_jwt_blacklists_on_jti"
+  end
+
+  create_table "quantities", force: :cascade do |t|
+    t.decimal "value", precision: 8, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "receipes", force: :cascade do |t|
+    t.string "title"
+    t.integer "prep_time"
+    t.integer "servings", default: 1
+    t.text "instructions"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string "name"
+    t.string "symbol"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
