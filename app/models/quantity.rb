@@ -1,5 +1,5 @@
 class Quantity < ApplicationRecord
-    belongs_to :receipe
+    belongs_to :recipe
     belongs_to :ingredient
     belongs_to :unit
 

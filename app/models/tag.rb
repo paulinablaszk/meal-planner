@@ -1,6 +1,6 @@
 class Tag < ApplicationRecord
     belongs_to :user
-    has_and_belongs_to_many :receipes
+    has_and_belongs_to_many :recipes
 
     validates :title,
               presence: true,

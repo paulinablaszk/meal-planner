@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_034512) do
+ActiveRecord::Schema.define(version: 2020_05_25_042917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,16 +33,16 @@ ActiveRecord::Schema.define(version: 2020_05_25_034512) do
     t.decimal "value", precision: 8, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "receipe_id", null: false
+    t.bigint "recipe_id", null: false
     t.bigint "ingredient_id", null: false
     t.bigint "unit_id", null: false
     t.decimal "grams"
     t.index ["ingredient_id"], name: "index_quantities_on_ingredient_id"
-    t.index ["receipe_id"], name: "index_quantities_on_receipe_id"
+    t.index ["recipe_id"], name: "index_quantities_on_recipe_id"
     t.index ["unit_id"], name: "index_quantities_on_unit_id"
   end
 
-  create_table "receipes", force: :cascade do |t|
+  create_table "recipes", force: :cascade do |t|
     t.string "title"
     t.integer "prep_time"
     t.integer "servings", default: 1
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_034512) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "receipes_tags", id: false, force: :cascade do |t|
-    t.bigint "receipe_id", null: false
+  create_table "recipes_tags", id: false, force: :cascade do |t|
+    t.bigint "recipe_id", null: false
     t.bigint "tag_id", null: false
   end
 
@@ -82,6 +82,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_034512) do
   end
 
   add_foreign_key "quantities", "ingredients"
-  add_foreign_key "quantities", "receipes"
+  add_foreign_key "quantities", "recipes"
   add_foreign_key "quantities", "units"
 end
