@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_131038) do
+ActiveRecord::Schema.define(version: 2020_05_25_034512) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
@@ -30,6 +33,13 @@ ActiveRecord::Schema.define(version: 2020_03_31_131038) do
     t.decimal "value", precision: 8, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "receipe_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.bigint "unit_id", null: false
+    t.decimal "grams"
+    t.index ["ingredient_id"], name: "index_quantities_on_ingredient_id"
+    t.index ["receipe_id"], name: "index_quantities_on_receipe_id"
+    t.index ["unit_id"], name: "index_quantities_on_unit_id"
   end
 
   create_table "receipes", force: :cascade do |t|
@@ -39,6 +49,11 @@ ActiveRecord::Schema.define(version: 2020_03_31_131038) do
     t.text "instructions"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "receipes_tags", id: false, force: :cascade do |t|
+    t.bigint "receipe_id", null: false
+    t.bigint "tag_id", null: false
   end
 
   create_table "tags", force: :cascade do |t|
@@ -66,4 +81,7 @@ ActiveRecord::Schema.define(version: 2020_03_31_131038) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "quantities", "ingredients"
+  add_foreign_key "quantities", "receipes"
+  add_foreign_key "quantities", "units"
 end
