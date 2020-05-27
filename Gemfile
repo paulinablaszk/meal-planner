@@ -8,7 +8,7 @@ gem 'rails', '~> 6.0.1'
 # Use  Postgresql as the database for Active Record
 gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem "puma", ">= 4.3.5"
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -30,6 +30,9 @@ gem 'rack-cors'
 # Use devise and JWT for authentication 
 gem 'devise'
 gem 'devise-jwt'
+
+# Use for api serialization
+gem 'active_model_serializers', '~> 0.10.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
